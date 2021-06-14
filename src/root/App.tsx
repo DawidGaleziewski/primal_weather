@@ -1,13 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 // Router
 import MainRouter from '@Router/MainRouter'
 
+// Styles
+import theme from './style/MuiTheme';
+
 function App() {
   return (
-    <MainRouter/>
+    <MuiThemeProvider theme={theme}>
+      <MainRouter/>
+    </MuiThemeProvider>
   );
 }
 

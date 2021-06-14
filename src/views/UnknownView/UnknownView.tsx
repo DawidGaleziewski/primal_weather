@@ -2,7 +2,7 @@ import React from 'react';
 
 const NonFoundView = () => {
     return <div>
-        Hello
+        Route not path
     </div>
 }
 
