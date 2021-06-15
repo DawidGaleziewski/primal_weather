@@ -1,4 +1,10 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
 import React from 'react';
+
+// Components
+import SearchWrapper from '@Components/SearchWrapper/SearchWrapper';
 
 // MUI
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +44,9 @@ const HomeView = () => {
           </Typography>
         </Toolbar>
       </AppBar>
+
+      <SearchWrapper>
+      </SearchWrapper>
     </div>
 }
 
