@@ -39,14 +39,19 @@ interface PlaceType {
   title: string
 }
 
+type AutocompleteSearchProps = {
+  inputValue: string;
+  setInputValue: Function
+}
 
-const AutocompleteSearch = () => {
+
+const AutocompleteSearch = ({inputValue, setInputValue}: AutocompleteSearchProps ) => {
   const classes = useStyles();
   const [value, setValue] = React.useState<PlaceType | null>(null);
-  const [inputValue, setInputValue] = React.useState('');
+  // const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<PlaceType[]>([]);
 
-  const getPlacesURL = (query: string) => `https://places.ls.hereapi.com/places/v1/autosuggest?at=40.74917,-73.98529&q=${query}&apiKey=h-STCB9rBwNgoyAocUaIt1-27J3d4NF2EURK0dfB93A`
+  const getPlacesURL = (query: string) => `https://places.ls.hereapi.com/places/v1/autosuggest?at=40.74917,-73.98529&q=${query}&apiKey=HzTJAP7ClXEPQxfGqXB0dXy4-9RsDaCQjWeIhS9Ks3k`
 
   const fetchPlaces = async (query: string, setterFn: Function) => {
     try{

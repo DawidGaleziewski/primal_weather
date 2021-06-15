@@ -1,10 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from 'react';
+import React, {useState} from 'react';
 import { css, jsx } from '@emotion/react';
-
-// Layout
-import UXContainer from  '@Layout/UXContainer/UXContainer';
+import {Link} from 'react-router-dom';
 
 // Components
 import SearchWrapper from '@Components/SearchWrapper/SearchWrapper';
@@ -35,11 +33,12 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-  
+
 
 const HomeView = () => {
 
     const classes = useStyles()
+    const [selectedRegion, setSelectedRegion] = useState('')
 
     return <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
@@ -54,7 +53,12 @@ const HomeView = () => {
       </AppBar>
 
       <SearchWrapper>
-        <AutocompleteSearch />
+        <form>
+          <AutocompleteSearch setInputValue={setSelectedRegion} inputValue={selectedRegion} />
+          <Button component={Link} to={`/weather/${selectedRegion}`} variant="contained" color="primary">
+            confirm
+          </Button>
+        </form>
       </SearchWrapper>
     </div>
 }
