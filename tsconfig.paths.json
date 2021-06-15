@@ -6,7 +6,8 @@
            "@Redux/*": ["./redux/*"],
            "@Router/*": ["./router/*"],
            "@Utils/*": ["./utils/*"],
-           "@Views/*": ["./views/*"]
+           "@Views/*": ["./views/*"],
+           "@Layout/*": ["./layout/*"]
          }
     }
 }
