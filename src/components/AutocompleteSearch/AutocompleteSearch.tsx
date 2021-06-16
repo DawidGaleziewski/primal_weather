@@ -36,7 +36,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface PlaceType {
-  title: string
+  id: number,
+  lat: number,
+  lon: number,
+  name: string,
+  region: string,
+  url: string,
 }
 
 type AutocompleteSearchProps = {
@@ -48,16 +53,17 @@ type AutocompleteSearchProps = {
 const AutocompleteSearch = ({inputValue, setInputValue}: AutocompleteSearchProps ) => {
   const classes = useStyles();
   const [value, setValue] = React.useState<PlaceType | null>(null);
-  // const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<PlaceType[]>([]);
 
-  const getPlacesURL = (query: string) => `https://places.ls.hereapi.com/places/v1/autosuggest?at=40.74917,-73.98529&q=${query}&apiKey=HzTJAP7ClXEPQxfGqXB0dXy4-9RsDaCQjWeIhS9Ks3k`
+ 
+  const getPlacesURL = (query: string) => ` http://api.weatherapi.com/v1/search.json?key=adb70c0326af47ca874205610211506&q=${query}`
 
   const fetchPlaces = async (query: string, setterFn: Function) => {
     try{
       const url = getPlacesURL(query);
-      const {data: {results}} = await axios.get(url);
-      setterFn(results)
+      const {data} = await axios.get(url);
+      console.log('result is: ', data)
+      setterFn(data)
     } catch(error){
       console.log(error);
     }
@@ -84,7 +90,7 @@ const AutocompleteSearch = ({inputValue, setInputValue}: AutocompleteSearchProps
       id="google-map-demo"
       className={classes.autocomplete}
       style={{ width: 300 }}
-      getOptionLabel={(option) => (typeof option === 'string' ? option : option.title)}
+      getOptionLabel={(option) => (typeof option === 'string' ? option : option.url)}
       filterOptions={(x) => x}
       options={options}
       autoComplete
@@ -103,7 +109,7 @@ const AutocompleteSearch = ({inputValue, setInputValue}: AutocompleteSearchProps
       )}
       renderOption={(option) => {
 
-        const {title} = option;
+        const {name} = option;
 
         return (
           <Grid container alignItems="center">
@@ -112,7 +118,7 @@ const AutocompleteSearch = ({inputValue, setInputValue}: AutocompleteSearchProps
             </Grid>
             <Grid item xs>
               <Typography variant="body2" color="textSecondary">
-                {title}
+                {name}
               </Typography>
             </Grid>
           </Grid>

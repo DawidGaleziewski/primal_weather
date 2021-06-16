@@ -40,6 +40,8 @@ const HomeView = () => {
     const classes = useStyles()
     const [selectedRegion, setSelectedRegion] = useState('')
 
+    console.log('selected region is: ', selectedRegion)
+
     return <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
           <Toolbar>
