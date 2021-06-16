@@ -7,6 +7,9 @@ import LoadingView from '@Views/LoadingView/LoadingView';
 const HomeView = lazy(() =>
     import('@Views/HomeView/HomeView')
 );
+const SearchView = lazy(() =>
+    import('@Views/SearchView/SearchView')
+);
 
 const WeatherView = lazy(() =>
     import('@Views/WeatherView/WeatherView')
@@ -23,15 +26,17 @@ const UnknownView = lazy(() =>
 const MainRouter = () => {
     return (
         <Fragment>
-            <Router>
-                <Suspense fallback={<LoadingView />}>
-                    <Switch>
-                        <Route exact path="/" component={HomeView} />
-                        <Route path="/weather/:city" component={WeatherView } />
-                        <Route path="*" component={UnknownView } />
-                    </Switch>
-                </Suspense>
-            </Router>
+            <Suspense fallback={<LoadingView />}>
+                <Router>
+                        <SearchView />
+                        <Switch>
+                            <Route path="/" exact component={HomeView } />
+                            <Route path="/weather/:city" component={WeatherView } />
+                            <Route path="*" component={UnknownView } />
+                        </Switch>
+                    
+                </Router>
+            </Suspense>
         </Fragment>
     )
 }
