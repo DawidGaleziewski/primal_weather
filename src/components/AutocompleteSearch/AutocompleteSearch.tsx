@@ -56,13 +56,12 @@ const AutocompleteSearch = ({inputValue, setInputValue}: AutocompleteSearchProps
   const [options, setOptions] = React.useState<PlaceType[]>([]);
 
  
-  const getPlacesURL = (query: string) => ` http://api.weatherapi.com/v1/search.json?key=adb70c0326af47ca874205610211506&q=${query}`
+  const getPlacesURL = (query: string) => `http://api.weatherapi.com/v1/search.json?key=adb70c0326af47ca874205610211506&q=${query}`
 
   const fetchPlaces = async (query: string, setterFn: Function) => {
     try{
       const url = getPlacesURL(query);
       const {data} = await axios.get(url);
-      console.log('result is: ', data)
       setterFn(data)
     } catch(error){
       console.log(error);

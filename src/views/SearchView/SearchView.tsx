@@ -40,8 +40,6 @@ const HomeView = () => {
     const classes = useStyles()
     const [selectedRegion, setSelectedRegion] = useState('')
 
-    console.log('selected region is: ', selectedRegion)
-
     return <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
           <Toolbar>
@@ -57,7 +55,7 @@ const HomeView = () => {
       <SearchWrapper>
         <form>
           <AutocompleteSearch setInputValue={setSelectedRegion} inputValue={selectedRegion} />
-          <Button component={Link} to={`/weather/${selectedRegion}`} variant="contained" color="primary">
+          <Button disabled={selectedRegion.length < 1} component={Link} to={`/weather/${selectedRegion}`} variant="contained" color="primary">
             confirm
           </Button>
         </form>
