@@ -7,7 +7,8 @@
            "@Router/*": ["./router/*"],
            "@Utils/*": ["./utils/*"],
            "@Views/*": ["./views/*"],
-           "@Layout/*": ["./layout/*"]
+           "@Layout/*": ["./layout/*"],
+           "@Types/*": ["./types/*"]
          }
     }
 }

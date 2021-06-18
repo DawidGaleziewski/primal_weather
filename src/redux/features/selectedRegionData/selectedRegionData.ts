@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect'
 import { LOADING, REJECTED, SUCCESS } from '@Redux/networkStatus'
 
-type SliceState = {
+export type SliceState = {
     status: null | string;
     data: {
         location: {};
@@ -62,6 +63,10 @@ const selectedRegionDataSlice: any = createSlice({
     },
 })
 
+// Selectors
+export const selectTemperature = () => useSelector(state => state.state)
+
+// Actions
 export const {
     fetchData,
     setData,
