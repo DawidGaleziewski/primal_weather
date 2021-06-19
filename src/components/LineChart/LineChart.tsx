@@ -8,11 +8,8 @@ import {
     XAxis,
     YAxis,
     HorizontalGridLines,
-    Hint,
     FlexibleXYPlot,
     LineMarkSeries,
-    Highlight,
-    Borders
 } from 'react-vis';
 
 // Style
@@ -24,11 +21,15 @@ type VisDataPoint = {
     y: number | string | Date
 }
 
+type Tick = string
+
 type LineChartProps = {
     dataset: VisDataPoint[];
+    tickFormatY?: (tick: Tick) => Tick,
+    tickFormatX?: (tick: Tick) => Tick
 }
 
-const LineChart = ({dataset}: LineChartProps)=> {
+const LineChart = ({dataset, tickFormatY= (tick: Tick) => tick, tickFormatX= (tick: Tick) => tick}: LineChartProps)=> {
     return <div css={lineChartStyle}> 
         <FlexibleXYPlot>
         <HorizontalGridLines />
@@ -38,8 +39,8 @@ const LineChart = ({dataset}: LineChartProps)=> {
             strokeStyle="solid"
             style={{height: '400px'}}
             />
-            <XAxis />
-            <YAxis />
+            <XAxis tickTotal={4} tickFormat={tickFormatX}/>
+            <YAxis tickFormat={tickFormatY} />
         </FlexibleXYPlot>
   </div>
 }

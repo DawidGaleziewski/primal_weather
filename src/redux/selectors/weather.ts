@@ -1,4 +1,4 @@
-import { useSelector, RootStateOrAny } from "react-redux";
+import { RootStateOrAny } from "react-redux";
 
 type TemperatureDatapoint = {
     time: string,
@@ -22,4 +22,6 @@ export const mutateToChartData = (datapoints: TemperatureDatapoint[], byValue: "
     x: new Date(datapint.time)
 }))
 
-export const selectForecastChartTemperatureData = (state:RootStateOrAny) => mutateToChartData(flattenDailyArray(forecatSelector(state)), 'temp_c')
+export const selectForecastChartTemperatureData = (state:RootStateOrAny) => mutateToChartData(flattenDailyArray(forecatSelector(state)), 'temp_c');
+
+export const selectForecastChartHumidityData = (state:RootStateOrAny) => mutateToChartData(flattenDailyArray(forecatSelector(state)), 'humidity')
