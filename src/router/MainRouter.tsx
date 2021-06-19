@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useContext, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch, useHistory } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 
 // Views
 import LoadingView from '@Views/LoadingView/LoadingView';
@@ -19,6 +20,10 @@ const UnknownView = lazy(() =>
     import('@Views/UnknownView/UnknownView')
 );
 
+const LocationNotFoundView = lazy(()=> import('@Views/LocationNotFoundView/LocationNotFoundView'))
+
+export const history = createHistory();
+
 
 /**
  * Main routes of the app
@@ -32,7 +37,8 @@ const MainRouter = () => {
                         <Switch>
                             <Route path="/" exact component={HomeView } />
                             <Route path="/weather/:city" component={WeatherView } />
-                            <Route path="*" component={UnknownView } />
+                            <Route path="/error-no-city-found" exact component={LocationNotFoundView } />
+                            <Route path="*" component={UnknownView} />
                         </Switch>
                     
                 </Router>

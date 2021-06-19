@@ -1,4 +1,7 @@
 import { call, put, select, takeLatest, fork } from 'redux-saga/effects';
+// import {useHistory} from 'react-router-dom'
+import { push } from 'react-router-redux'
+import {history} from '@Router/MainRouter';
 
 // Requests
 import * as api from '@Redux/sagas/api/index';
@@ -15,6 +18,7 @@ function* selectedRegionDataWorker(action){
     } catch(error){
         console.log(error);
         yield put(fetchError())
+        push('/error-no-city-found')
     }
 }
 

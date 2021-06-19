@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, Fragment} from 'react';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
 import dateTime from 'date-time';
 import {
@@ -30,9 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
-    },
+    }
   }),
 );
+
+const formatCityName = (name:string) =>  name.split('-').map(word => {
+  return word[0].toUpperCase() + word.substring(1);
+}).join(' ')
 
 const WeatherView = () => {
     const classes = useStyles();
@@ -41,21 +45,19 @@ const WeatherView = () => {
     const {city} = useParams<{city?: string}>();
 
     const selectedRegionForecastTemp = selectForecastChartTemperatureData((useSelector(state => state)));
-    const selectedRegionForecastHumidity = selectForecastChartHumidityData(useSelector(state => state))
 
-    console.log('selectedRegionForecast ', selectedRegionForecastTemp)
-    console.log('city', city)
+    const selectedRegionForecastHumidity = selectForecastChartHumidityData(useSelector(state => state))
     
     useEffect(()=> {
         dispatch(fetchData({query: city, days: 2}))
     }, [])
 
-    return <main className={classes.root}>
+    return <article className={classes.root}>
       <Grid container spacing={3}>
       <Grid item xs={12}>
           <Paper className={classes.paper}>
             <Typography variant="h4" component="h2">
-              Weather data visualisation for {city}
+              Weather forecast for {city && formatCityName(city)}
             </Typography>
           </Paper>
         </Grid>
@@ -72,7 +74,7 @@ const WeatherView = () => {
           </Paper>
         </Grid>
       </Grid>
-    </main>
+    </article>
 }
 
 export default WeatherView;
