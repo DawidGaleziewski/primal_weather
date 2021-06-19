@@ -20,8 +20,8 @@ import lineChartStyle from './style/lineChartStyle';
 
 
 type VisDataPoint = {
-    x: number,
-    y: number
+    x: number | string | Date,
+    y: number | string | Date
 }
 
 type LineChartProps = {

@@ -63,8 +63,7 @@ const selectedRegionDataSlice: any = createSlice({
     },
 })
 
-// Selectors
-export const selectTemperature = () => useSelector(state => state.state)
+
 
 // Actions
 export const {
