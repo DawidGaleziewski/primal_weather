@@ -43,6 +43,7 @@ type ForecastSelectedProps = {
 };
 const ForecastSelected = ({ city }: ForecastSelectedProps) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchData({ query: city, days: 2 }));
   }, [city, dispatch]);
