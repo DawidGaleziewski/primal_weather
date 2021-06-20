@@ -18,7 +18,6 @@ function* selectedRegionDataWorker(action){
     } catch(error){
         console.log(error);
         yield put(fetchError())
-        push('/error-no-city-found')
     }
 }
 

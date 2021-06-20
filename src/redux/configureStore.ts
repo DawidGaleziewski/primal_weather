@@ -1,6 +1,9 @@
 import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '@Redux/sagas';
+import { createBrowserHistory } from 'history'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+
 
 // Reducers
 import selectedRegionDataReducer from '@Redux/features/selectedRegionData/selectedRegionData'
@@ -9,6 +12,7 @@ import selectedRegionDataReducer from '@Redux/features/selectedRegionData/select
 import {SliceState} from '@Redux/features/selectedRegionData/selectedRegionData';
 
 const sagaMiddleware = createSagaMiddleware();
+export const history = createBrowserHistory()
 
 const reducer = combineReducers({
     selectedRegionData: selectedRegionDataReducer

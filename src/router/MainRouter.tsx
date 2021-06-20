@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useContext, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch, useHistory } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
 
 // Views
 import LoadingView from '@Views/LoadingView/LoadingView';
@@ -21,8 +20,6 @@ const UnknownView = lazy(() =>
 );
 
 const LocationNotFoundView = lazy(()=> import('@Views/LocationNotFoundView/LocationNotFoundView'))
-
-export const history = createHistory();
 
 
 /**
