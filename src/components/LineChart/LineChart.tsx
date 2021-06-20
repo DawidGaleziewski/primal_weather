@@ -10,6 +10,7 @@ import {
     HorizontalGridLines,
     FlexibleXYPlot,
     LineMarkSeries,
+    DiscreteColorLegend
 } from 'react-vis';
 
 // Style
@@ -31,13 +32,15 @@ type LineChartProps = {
 
 const LineChart = ({dataset, tickFormatY= (tick: Tick) => tick, tickFormatX= (tick: Tick) => tick}: LineChartProps)=> {
     return <div css={lineChartStyle}> 
+    
         <FlexibleXYPlot>
         <HorizontalGridLines />
             <LineMarkSeries
-            data={dataset}
-            opacity={1}
-            strokeStyle="solid"
-            style={{height: '400px'}}
+                animation
+                data={dataset}
+                opacity={1}
+                strokeStyle="solid"
+                style={{height: '400px'}}
             />
             <XAxis tickTotal={4} tickFormat={tickFormatX}/>
             <YAxis tickFormat={tickFormatY} />

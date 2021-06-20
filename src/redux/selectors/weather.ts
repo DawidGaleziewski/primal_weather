@@ -22,6 +22,24 @@ export const mutateToChartData = (datapoints: TemperatureDatapoint[], byValue: "
     x: new Date(datapint.time)
 }))
 
+export const mutateToTableData = (datapointsA: TemperatureDatapoint[], datapointsB: TemperatureDatapoint[]) => datapointsA.map(({temp_c, time}) => {
+    const comperableDatapoint = datapointsB.find(datapoint => datapoint.time === time);
+    return {
+        time,
+        temp_c_city_a:  temp_c,
+        temp_c_city_b:  comperableDatapoint ? comperableDatapoint.temp_c : null,
+        temp_diff: comperableDatapoint ? temp_c - comperableDatapoint.temp_c : null
+    }
+}) 
+
+
 export const selectForecastChartTemperatureData = (state:RootStateOrAny) => mutateToChartData(flattenDailyArray(forecatSelector(state)), 'temp_c');
 
 export const selectForecastChartHumidityData = (state:RootStateOrAny) => mutateToChartData(flattenDailyArray(forecatSelector(state)), 'humidity')
+
+export const selectCompareTableData = (state:RootStateOrAny) => {
+    const selectedRegion = flattenDailyArray(forecatSelector(state));
+    const compareToRegion = flattenDailyArray(state.regionsToCompare.data.gdansk);
+    return mutateToTableData(selectedRegion, compareToRegion)
+} 
+
