@@ -54,6 +54,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Project structure
 
+- /root - root of the application bootstraping all crytical components
 - /components - all reusable components
 - /redux - redux features and sagas
 - /router - all routing related configs
