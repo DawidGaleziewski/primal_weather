@@ -1,14 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React, {useState} from 'react';
-import { css, jsx } from '@emotion/react';
-
+import React from "react";
 
 const HomeView = () => {
-
-    return <div>
-        Root View
-    </div>
-}
+  return <div>Root View</div>;
+};
 
 export default HomeView;

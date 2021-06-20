@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const NonFoundView = () => {
-    return <div>
-        Route not path
-    </div>
-}
+  return <div>Route not path</div>;
+};
 
 export default NonFoundView;
