@@ -68,7 +68,7 @@ const HomeView = () => {
             variant="contained"
             color="primary"
           >
-            confirm
+            Search
           </Button>
         </form>
       </SearchWrapper>
