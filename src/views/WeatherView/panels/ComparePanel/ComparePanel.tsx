@@ -81,7 +81,7 @@ const ComparePanel = ({ city }: ForecastSelectedProps) => {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <Typography variant="h6" component="h3">
-              Temperature (C)
+              Temperature (&deg;C)
             </Typography>
             <TableContainer component={Paper}>
               <Table

@@ -68,7 +68,7 @@ const ForecastSelected = ({ city }: ForecastSelectedProps) => {
         <Grid item xs={12} md={6}>
           <Paper className={classes.paper}>
             <Typography variant="h6" component="h3">
-              Temperature (C)
+              Temperature (&deg;C)
             </Typography>
             <LineChart
               tickFormatY={(tick) => `${tick}C`}

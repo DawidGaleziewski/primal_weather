@@ -27,7 +27,7 @@ const WeatherView = () => {
       case LOADING:
         return <LoadingView />;
       case REJECTED:
-        history.push("/error");
+        history.push("/error-no-city-found");
         return null;
       default:
         return null;
