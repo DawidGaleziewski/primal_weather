@@ -9,6 +9,9 @@ import MainRouter from "@Router/MainRouter";
 // Styles
 import theme from "./style/MuiTheme";
 
+/**
+ * Root compoent of the app
+ */
 function App() {
   return (
     <MuiThemeProvider theme={theme}>

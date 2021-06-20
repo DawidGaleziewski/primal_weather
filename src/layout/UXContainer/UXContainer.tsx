@@ -11,6 +11,9 @@ const UXContainerStyle = css`
   margin: 0 auto;
 `;
 
+/**
+ * Component used to provide consistant max-width on the page
+ */
 const UXContainer = ({ children }: UXContainerProps) => {
   return <div css={UXContainerStyle}>{children}</div>;
 };

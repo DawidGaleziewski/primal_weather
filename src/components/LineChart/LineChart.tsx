@@ -26,6 +26,9 @@ type LineChartProps = {
   tickFormatX?: (tick: Tick) => Tick;
 };
 
+/**
+ * Component used to display line chart
+ */
 const LineChart = ({
   dataset,
   tickFormatY = (tick: Tick) => tick,

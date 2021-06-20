@@ -38,6 +38,9 @@ type DataTableProps = {
   compareTableData: any[];
 };
 
+/**
+ * Component used display a table displaying two rows of values comparing temperatures
+ */
 const CompareTempDataTable = ({
   cityA = "",
   cityB = "",

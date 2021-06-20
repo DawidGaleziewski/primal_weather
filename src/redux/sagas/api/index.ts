@@ -1,5 +1,8 @@
 import axios from "axios";
 
+/**
+ * Axios weather api call
+ */
 export function getWeather(query: string, days: number) {
   return axios.request({
     method: "post",

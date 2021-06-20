@@ -30,6 +30,9 @@ const initialState: SliceState = {
   },
 };
 
+/**
+ * Redux feature holding data slice for selected region
+ */
 const selectedRegionDataSlice: any = createSlice({
   name: "selectedRegionData",
   initialState,

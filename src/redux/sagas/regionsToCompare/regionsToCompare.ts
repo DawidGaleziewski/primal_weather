@@ -23,6 +23,10 @@ type RegionsAction = {
 };
 
 // # 1 Workers
+
+/**
+ * Worker for fetching data related to information used to compare against
+ */
 function* regionsToCompareWorker(action: RegionsAction) {
   try {
     const {
@@ -41,6 +45,9 @@ function* regionsToCompareWorker(action: RegionsAction) {
 }
 
 // # 2 Watchers
+/**
+ * Watcher for fetch redux actions
+ */
 function* watchregionsToCompare() {
   yield takeLatest(fetchData.type, regionsToCompareWorker);
 }

@@ -23,6 +23,9 @@ type SelectedRegionAction = {
 };
 
 // # 1 Workers
+/**
+ * Worker setting state after fetch request
+ */
 function* selectedRegionDataWorker(action: SelectedRegionAction) {
   try {
     const {
@@ -37,6 +40,9 @@ function* selectedRegionDataWorker(action: SelectedRegionAction) {
 }
 
 // # 2 Watchers
+/**
+ * Watcher for fetch redux actions
+ */
 function* watchSelectedRegion() {
   yield takeLatest(fetchData.type, selectedRegionDataWorker);
 }

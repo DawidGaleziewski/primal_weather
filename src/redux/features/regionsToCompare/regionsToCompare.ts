@@ -20,6 +20,9 @@ const initialState: SliceState = {
   },
 };
 
+/**
+ * Redux feature holding hardcoded data with weather information used to be compared with user selected one
+ */
 const regionsToCompare: any = createSlice({
   name: "regionsToCompare",
   initialState,

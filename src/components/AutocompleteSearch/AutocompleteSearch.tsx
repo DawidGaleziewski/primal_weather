@@ -34,6 +34,9 @@ type AutocompleteSearchProps = {
   setInputValue: Function;
 };
 
+/**
+ * Component used to connect to weather api and suggest search options
+ */
 const AutocompleteSearch = ({
   inputValue,
   setInputValue,

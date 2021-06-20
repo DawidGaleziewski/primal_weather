@@ -27,4 +27,8 @@ const store = configureStore({
 sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
+
+/**
+ * Root of the redux store, including sagas
+ */
 export default store;
