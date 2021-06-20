@@ -9,6 +9,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Table from '@material-ui/core/Table';
+import TablePagination from '@material-ui/core/TablePagination';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -21,7 +22,6 @@ import {selectForecastChartTemperatureData, selectForecastChartHumidityData, sel
 
 // Utils
 import {formatCityName} from '@Utils/namesFormat';
-
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,11 +52,12 @@ const ComparePanel = ({city}: ForecastSelectedProps) => {
     }, [city])
 
     const classes = useStyles();
-    console.log('useSelector(state => state)', useSelector(state => state))
     const compareTableData = selectCompareTableData(useSelector(state => state))
-    console.log('compareTableData',compareTableData)
-    // const selectedRegionForecastTemp = selectForecastChartTemperatureData((useSelector(state => state)));
-    // const selectedRegionForecastHumidity = selectForecastChartHumidityData(useSelector(state => state))
+
+    const [order, setOrder] = React.useState('asc');
+    const [orderBy, setOrderBy] = React.useState('calories');
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     interface Data {
         time: string;
@@ -74,25 +75,14 @@ const ComparePanel = ({city}: ForecastSelectedProps) => {
         return { time, temp_c_city_a, temp_c_city_b, temp_diff };
       }
 
+  const handleChangePage = (event:any, newPage:number) => {
+    setPage(newPage);
+  };
 
-    // const rows = [
-    //     compareTableData.map(({name,}) => createData)
-    //     createData('Cupcake', 305, 3.7, 67, 4.3),
-    //     createData('Donut', 452, 25.0, 51, 4.9),
-    //     createData('Eclair', 262, 16.0, 24, 6.0),
-    //     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    //     createData('Gingerbread', 356, 16.0, 49, 3.9),
-    //     createData('Honeycomb', 408, 3.2, 87, 6.5),
-    //     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    //     createData('Jelly Bean', 375, 0.0, 94, 0.0),
-    //     createData('KitKat', 518, 26.0, 65, 7.0),
-    //     createData('Lollipop', 392, 0.2, 98, 0.0),
-    //     createData('Marshmallow', 318, 0, 81, 2.0),
-    //     createData('Nougat', 360, 19.0, 9, 37.0),
-    //     createData('Oreo', 437, 18.0, 63, 4.0),
-    //   ];
-      
-
+  const handleChangeRowsPerPage = (event:any) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
     return (<article className={classes.root}>
         <Grid container spacing={3}>
@@ -112,12 +102,12 @@ const ComparePanel = ({city}: ForecastSelectedProps) => {
                         <TableRow>
                             <TableCell>Timestamp</TableCell>
                             <TableCell align="right">{city && formatCityName(city)} temperature</TableCell>
-                            <TableCell align="right">Other city temperature</TableCell>
+                            <TableCell align="right">Gdańsk</TableCell>
                             <TableCell align="right">Diffrance</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {compareTableData.map((row) => (
+                        {compareTableData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                             <TableRow key={row.time}>
                             <TableCell component="th" scope="row">
                                 {row.time}
@@ -130,6 +120,15 @@ const ComparePanel = ({city}: ForecastSelectedProps) => {
                         </TableBody>
                     </Table>
                     </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[5, 10, 25]}
+                        component="div"
+                        count={compareTableData.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onChangePage={handleChangePage}
+                        onChangeRowsPerPage={handleChangeRowsPerPage}
+                        />
                 </Paper>
             </Grid>
         </Grid>

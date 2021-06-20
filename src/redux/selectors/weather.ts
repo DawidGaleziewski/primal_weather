@@ -28,7 +28,7 @@ export const mutateToTableData = (datapointsA: TemperatureDatapoint[], datapoint
         time,
         temp_c_city_a:  temp_c,
         temp_c_city_b:  comperableDatapoint ? comperableDatapoint.temp_c : null,
-        temp_diff: comperableDatapoint ? temp_c - comperableDatapoint.temp_c : null
+        temp_diff: comperableDatapoint ? (temp_c - comperableDatapoint.temp_c).toFixed(2) : null
     }
 }) 
 
