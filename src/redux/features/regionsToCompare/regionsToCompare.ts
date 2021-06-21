@@ -27,14 +27,19 @@ const regionsToCompare: any = createSlice({
   name: "regionsToCompare",
   initialState,
   reducers: {
+    /**
+     * redux action watched by saga when to start fetch worker
+    */
     fetchData(state, action) {
       return {
         ...state,
         status: LOADING,
       };
     },
+    /**
+     * redux action setting data after successful fetch from api
+    */
     setData(state, action: RegionsToCompare) {
-      console.log(action);
       const {
         payload: { data },
       } = action;
@@ -46,6 +51,9 @@ const regionsToCompare: any = createSlice({
         },
       };
     },
+    /**
+     * redux action on error
+    */
     fetchError(state, action) {
       return {
         ...state,

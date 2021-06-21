@@ -37,14 +37,19 @@ const selectedRegionDataSlice: any = createSlice({
   name: "selectedRegionData",
   initialState,
   reducers: {
+    /**
+     * redux action watched by saga when to start fetch worker
+    */
     fetchData(state, action) {
       return {
         ...state,
         status: LOADING,
       };
     },
+    /**
+     * redux action setting data after successful fetch from api
+    */
     setData(state, action: ForecastApiData) {
-      console.log(action);
       const {
         payload: {
           data: {
@@ -64,6 +69,9 @@ const selectedRegionDataSlice: any = createSlice({
         },
       };
     },
+    /**
+     * redux action on error
+    */
     fetchError(state, action) {
       return {
         ...state,

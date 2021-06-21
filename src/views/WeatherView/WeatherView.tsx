@@ -13,6 +13,9 @@ import LoadingView from "@Views/LoadingView/LoadingView";
 // Utils
 import { LOADING, SUCCESS, REJECTED, Status } from "@Redux/networkStatus";
 
+/**
+ * View displaying data related to slected location
+ */
 const WeatherView = () => {
   const history = useHistory();
   const { city } = useParams<{ city?: string }>();

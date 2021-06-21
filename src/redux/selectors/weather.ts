@@ -17,11 +17,17 @@ export const forecatSelector = (state:RootStateOrAny)  => state.selectedRegionDa
 
 export const flattenDailyArray = (dailyArray: TemperatureDatapoint[]) => dailyArray.map((dailyDataset: any) => dailyDataset.hour).flat()
 
+/**
+ * mutate forecast data into react-vis chart data
+ */
 export const mutateToChartData = (datapoints: TemperatureDatapoint[], byValue: "chance_of_rain" | "temp_c" | "humidity") => datapoints.map(datapint => ({
     y: datapint[byValue],
     x: new Date(datapint.time)
 }))
 
+/**
+ * mutate two forecast data arrays into array of table data comparing those
+ */
 export const mutateToTableData = (datapointsA: TemperatureDatapoint[], datapointsB: TemperatureDatapoint[]) => datapointsA.map(({temp_c, time}) => {
     const comperableDatapoint = datapointsB.find(datapoint => datapoint.time === time);
     return {
@@ -37,9 +43,9 @@ export const selectForecastChartTemperatureData = (state:RootStateOrAny) => muta
 
 export const selectForecastChartHumidityData = (state:RootStateOrAny) => mutateToChartData(flattenDailyArray(forecatSelector(state)), 'humidity')
 
-export const selectCompareTableData = (state:RootStateOrAny) => {
-    const selectedRegion = flattenDailyArray(forecatSelector(state));
-    const compareToRegion = flattenDailyArray(state.regionsToCompare.data.gdansk);
+export const selectCompareTableData = (regionAForecast:any, regionBForecast:any) => {
+    const selectedRegion = flattenDailyArray(regionAForecast);
+    const compareToRegion = flattenDailyArray(regionBForecast);
     return mutateToTableData(selectedRegion, compareToRegion)
 } 
 

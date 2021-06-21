@@ -35,7 +35,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HomeView = () => {
+/**
+ * View present on all pages. Used to search for a location
+ */
+const SearchView = () => {
   const classes = useStyles();
   const [selectedRegion, setSelectedRegion] = useState("");
 
@@ -70,4 +73,4 @@ const HomeView = () => {
   );
 };
 
-export default HomeView;
+export default SearchView;

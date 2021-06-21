@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * View displayed when app is loading i.e due to api fetch or chunk load
+ */
 const LoadingView = () => {
   const classes = useStyles();
 

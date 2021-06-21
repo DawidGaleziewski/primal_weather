@@ -48,9 +48,11 @@ const ComparePanel = ({ city }: ForecastSelectedProps) => {
   }, [city, dispatch]);
 
   const classes = useStyles();
-  const compareTableData = selectCompareTableData(
-    useSelector((state) => state)
-  );
+  const selectedRegionForecast = useSelector((state:any) => state.selectedRegionData.data.forecast);
+  const compareWithGdanskForecast = useSelector((state:any) => state.regionsToCompare.data.gdansk);
+
+  const compareTableData = selectCompareTableData(selectedRegionForecast, compareWithGdanskForecast)
+    
 
   return (
     <article className={classes.root}>
